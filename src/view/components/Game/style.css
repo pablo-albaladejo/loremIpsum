@@ -1,0 +1,11 @@
+.header {
+  width: 340px;
+  height: 66px;
+  background-image: linear-gradient(263deg, #498ac3, #8a99f9);
+}
+
+.logOut {
+  width: 26px;
+  height: 28px;
+  background-color: #ffffff;
+}
