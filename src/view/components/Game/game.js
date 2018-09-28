@@ -12,8 +12,12 @@ class Game extends PureComponent {
     username: 'Ismael',
     userSelected: '',
     computerSelected: '',
-    username: JSON.parse(localStorage.getItem('userData')).name,
-    balance: JSON.parse(localStorage.getItem('userData')).coin,
+    username:
+      localStorage.getItem('userData') &&
+      JSON.parse(localStorage.getItem('userData')).name,
+    balance:
+      localStorage.getItem('userData') &&
+      JSON.parse(localStorage.getItem('userData')).coin,
     bet: '',
     result: '',
   };
