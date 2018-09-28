@@ -73,7 +73,6 @@ class Game extends PureComponent {
   renderHeader() {
     const { balance, username } = this.state;
     if (!username) return null;
-<<<<<<< HEAD
     return (
       <div className="header">
         <div>
@@ -89,16 +88,6 @@ class Game extends PureComponent {
         </div>
       </div>
     );
-=======
-    return <div className="header">
-      <div><span className="user">{username}</span>
-        <span className="balance">{balance}</span></div>
-
-      <div className="logOut">
-        <img onClick={this.onLogOut} src={require("../../../assets/logout.svg")} />
-      </div>
-    </div>;
->>>>>>> e3cc4ff1296d9b7f3cacb11c6baa8de0eb4a8e99
   }
 
   renderCards() {
