@@ -1,6 +1,7 @@
 .idea/
 .bin/
 logs/
+build
 .DS_Store
 *.log
 workspace.xml
