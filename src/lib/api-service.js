@@ -5,7 +5,7 @@ const BASE_URL = 'http://hackathon.guidesmiths.com:4000/api';
 const GAME_NAME = 'rock_scissors_paper';
 
 const registerUser = user => {
-  const uriEndpoint = BASE_URL + '/user';
+  const uriEndpoint = `${BASE_URL}/user`;
   const body = user;
   const options = {
     headers: {
