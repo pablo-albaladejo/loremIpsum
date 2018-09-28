@@ -8,10 +8,6 @@ class Game extends PureComponent {
     options: ['Scissors', 'Spock', 'Paper', 'Lizard', 'Rock']
   };
 
-  getResult = ({ option }) => {
-    return {};
-  };
-
   render() {
     return (
       <div>
