@@ -7,7 +7,7 @@ import Login from '../src/view/components/Login/login';
 
 class App extends Component {
   state = {
-    isLoggedIn: false,
+    isLoggedIn: true,
     user: {},
   };
 

@@ -29,7 +29,7 @@ class Login extends PureComponent {
     if (!show) return null;
     return <div className="container">
             <div className="container-child">
-                <img src={require("../../../assets/7083c3658678335b0333e24bc3e-01.svg")} />
+        <img className="logo" src="../../../assets/7083c3658678335b0333e24bc3e-01.svg" />
                 <input onChange={evt => this.onChange("username", evt.target.value)} className="input" placeholder="User Name" />
                 <button className="login" onClick={this.signIn}>
                     Login
