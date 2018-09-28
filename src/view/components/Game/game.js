@@ -23,12 +23,18 @@ class Game extends PureComponent {
   };
 
   onPlayPress = () => {
-    const result = game(CONSTANTS.CARDS.ROCK, 100, this.state.balance);
+    game(this.state.username, CONSTANTS.CARDS.ROCK, 100, this.state.balance)
+      .then(result => {
 
-    this.setState({
-      balance: result.balance,
-    });
-    console.log(result);
+        this.setState({
+          balance: result.balance,
+        })
+
+        console.log(result);
+      }).catch(err => {
+        console.log(err);
+      })
+
   };
 
   onLogOut = () => {
@@ -70,11 +76,11 @@ class Game extends PureComponent {
     return <div className="header">
       <div><span className="user">{username}</span>
         <span className="balance">{balance}</span></div>
-            
-            <div className="logOut">
-                <img onClick={this.onLogOut} src={require("../../../assets/logout.svg")} />
-            </div>
-        </div>;
+
+      <div className="logOut">
+        <img onClick={this.onLogOut} src={require("../../../assets/logout.svg")} />
+      </div>
+    </div>;
   }
 
   renderCards() {
