@@ -131,7 +131,7 @@ class Game extends PureComponent {
 
   renderBottom() {
     return (
-      <div>
+      <div className="container-play">
         <input
           onChange={evt => this.onBetChange('bet', evt.target.value)}
           placeholder="Bet..."

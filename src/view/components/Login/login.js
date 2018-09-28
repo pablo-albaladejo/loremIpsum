@@ -45,7 +45,7 @@ class Main extends PureComponent {
     return (
       <div className="container">
         <div className="container-child">
-          <img
+          <img className="logo"
             src={require('../../../assets/7083c3658678335b0333e24bc3e-01.svg')}
           />
           <input
@@ -54,7 +54,7 @@ class Main extends PureComponent {
             placeholder="User Name"
           />
           <button className="login" onClick={this.signIn}>
-            Main
+            Login
           </button>
         </div>
       </div>

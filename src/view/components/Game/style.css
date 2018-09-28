@@ -8,6 +8,7 @@
   align-items: center;
   padding: 0 20px;
   justify-content: space-between;
+  margin-bottom: 10px;
 }
 
 .game-container {
@@ -60,7 +61,6 @@ img {
 
 .card-container {
 display: flex;
-padding: 25px;
 flex-wrap: wrap;
 justify-content: space-around;
 }
@@ -92,4 +92,8 @@ input {
   font-weight: 200;
   letter-spacing: 2px;
   cursor: pointer;
+}
+
+.container-play {
+  margin-top: 20px;
 }
