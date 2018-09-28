@@ -20,25 +20,27 @@ class Game extends PureComponent {
       JSON.parse(localStorage.getItem('userData')).coin,
     bet: '',
     result: '',
+    isLoggedIn: true,
   };
 
   onPlayPress = () => {
     game(this.state.username, CONSTANTS.CARDS.ROCK, 100, this.state.balance)
       .then(result => {
-
         this.setState({
           balance: result.balance,
-        })
+        });
 
         console.log(result);
-      }).catch(err => {
-        console.log(err);
       })
-
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   onLogOut = () => {
     localStorage.removeItem('userData');
+    this.setState(({ isLoggedIn }) => ({ isLoggedIn: !isLoggedIn }));
+    this.props.changeLogStatus();
   };
 
   renderUserResult = () => {
@@ -65,7 +67,7 @@ class Game extends PureComponent {
       <div>
         {this.renderUserResult()}
         {this.renderTextResult()}
-        {this.renderUserResult()}
+        {this.renderComputerResult()}
       </div>
     );
   };
@@ -92,32 +94,33 @@ class Game extends PureComponent {
 
   renderCards() {
     return (
-    <div className="card-container">
-            <div className="card">
-                <img src={require("../../../assets/rock.svg")} />
-                <p className="card-title">Rock</p>
-            </div>
+      <div className="card-container">
+        <div className="card">
+          <img src={require('../../../assets/rock.svg')} />
+          <p className="card-title">Rock</p>
+        </div>
 
-            <div className="card">
-                <img src={require("../../../assets/paper.svg")} />
-                <p className="card-title">Paper</p>
-            </div>
+        <div className="card">
+          <img src={require('../../../assets/paper.svg')} />
+          <p className="card-title">Paper</p>
+        </div>
 
-            <div className="card">
-                <img src={require("../../../assets/scissors.svg")} />
-                 <p className="card-title">Scissors</p>
-            </div>
+        <div className="card">
+          <img src={require('../../../assets/scissors.svg')} />
+          <p className="card-title">Scissors</p>
+        </div>
 
-            <div className="card">
-                <img src={require("../../../assets/lizard.svg")} />
-                <p className="card-title">Lizard</p>
-            </div>
+        <div className="card">
+          <img src={require('../../../assets/lizard.svg')} />
+          <p className="card-title">Lizard</p>
+        </div>
 
-            <div className="card">
-                <img src={require("../../../assets/spock.svg")} />
-                <p className="card-title">Spock</p>
-            </div>
-        </div>)
+        <div className="card">
+          <img src={require('../../../assets/spock.svg')} />
+          <p className="card-title">Spock</p>
+        </div>
+      </div>
+    );
   }
 
   onBetChange = (key, value) => {
@@ -136,17 +139,24 @@ class Game extends PureComponent {
           onChange={evt => this.onBetChange('bet', evt.target.value)}
           placeholder="Bet..."
         />
-        <button className="play" onClick={this.onPlayPress}>Play</button>
+        <button className="play" onClick={this.onPlayPress}>
+          Play
+        </button>
       </div>
     );
   }
 
   render() {
+    const { isLoggedIn } = this.state;
     return (
-      <div className="game-container">
-        {this.renderHeader()}
-        {this.result ? this.renderResult() : this.renderCards()}
-        {this.renderBottom()}
+      <div>
+        {isLoggedIn ? (
+          <div className="game-container">
+            {this.renderHeader()}
+            {this.result ? this.renderResult() : this.renderCards()}
+            {this.renderBottom()}
+          </div>
+        ) : null}
       </div>
     );
   }

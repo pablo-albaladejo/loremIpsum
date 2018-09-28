@@ -16,6 +16,10 @@ class Main extends PureComponent {
     }
   }
 
+  changeLogStatus = () => {
+    this.setState(({ isLoggedIn }) => ({ isLoggedIn: !isLoggedIn }));
+  };
+
   signIn = () => {
     registerUser({
       name: this.state.username,
@@ -41,11 +45,12 @@ class Main extends PureComponent {
   renderLogin() {
     const { isLoggedIn } = this.state;
     console.log(isLoggedIn, 'isLoggedIn');
-    if (isLoggedIn) return <Game />;
+    if (isLoggedIn) return <Game changeLogStatus={this.changeLogStatus} />;
     return (
       <div className="container">
         <div className="container-child">
-          <img className="logo"
+          <img
+            className="logo"
             src={require('../../../assets/7083c3658678335b0333e24bc3e-01.svg')}
           />
           <input
