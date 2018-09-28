@@ -13,7 +13,6 @@ class Login extends PureComponent {
   signIn = () => {
     this.props.getLoggedUser();
 
-    //this.setState(show => ({ show: !show }));
     registerUser({
       name: this.state.username,
     }).then(userData => {
