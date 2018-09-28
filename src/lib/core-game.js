@@ -63,19 +63,14 @@ function canUserPlay(bet, balance) {
 function updateBalance(balance, bet, gamble) {
 
   switch (gamble) {
-
     case CONSTANTS.GAMBLE.LOSE:
       return balance - bet;
-      break;
-
+    
     case CONSTANTS.GAMBLE.WIN:
       return balance + bet;
-      break;
-
+    
     default:
       return balance
-      break;
-
   }
 
 }
@@ -83,7 +78,6 @@ function updateBalance(balance, bet, gamble) {
 function game(playerOne, bet) {
   const playerTwo = getComputerOption(Object.keys(CONSTANTS.CARDS).length);
 
-  const result = 0;
   const balance = 100;
 
   const gamble = play(playerOne, playerTwo);
