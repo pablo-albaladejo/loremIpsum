@@ -33,6 +33,7 @@ class Game extends PureComponent {
           balance: result.balance,
           userSelected: result.playerOne,
           computerSelected: result.playerTwo,
+          result: result,
         });
 
         console.log(result);
@@ -62,7 +63,7 @@ class Game extends PureComponent {
     this.setState({ result: '' });
   };
 
-  renderTextResult = () => {
+  renderResult = () => {
     const { result } = this.state;
     return (
       <div className="game-result">
@@ -83,7 +84,8 @@ class Game extends PureComponent {
     );
   };
 
-  renderResult = () => {
+  /*   renderResult = () => {
+    console.log('yooooo');
     return (
       <div>
         {this.renderUserResult()}
@@ -91,7 +93,7 @@ class Game extends PureComponent {
         {this.renderComputerResult()}
       </div>
     );
-  };
+  }; */
 
   renderHeader() {
     const { balance, username } = this.state;
@@ -189,6 +191,7 @@ class Game extends PureComponent {
 
   render() {
     const { isLoggedIn } = this.state;
+    console.log(this.state.result, '*************');
     return (
       <div>
         {isLoggedIn ? (
