@@ -22,7 +22,7 @@ class Main extends PureComponent {
     })
       .then(userData => {
         localStorage.setItem('userData', JSON.stringify(userData));
-        this.setState(show => ({ show: !show }));
+        this.setState({ isLoggedIn: true });
       })
       .catch(err => {
         console.log(err);
