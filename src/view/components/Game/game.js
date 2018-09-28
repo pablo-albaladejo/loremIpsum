@@ -12,8 +12,8 @@ class Game extends PureComponent {
     username: 'Ismael',
     userSelected: '',
     computerSelected: '',
-    username: JSON.parse(localStorage.getItem('userData')).name,
-    balance: JSON.parse(localStorage.getItem('userData')).coin,
+    username: localStorage.getItem('userData') && JSON.parse(localStorage.getItem('userData')).name,
+    balance: localStorage.getItem('userData') && JSON.parse(localStorage.getItem('userData')).coin,
     bet: '',
     result: '',
   };
@@ -74,19 +74,32 @@ class Game extends PureComponent {
   }
 
   renderCards() {
-    return (
-      <div className="card-container">
-        <img src={require('../../../assets/rock.svg')} />
+    return <div className="card-container">
+            <div className="card">
+                <img src={require("../../../assets/rock.svg")} />
+                <p className="card-title">Rock</p>
+            </div>
 
-        <img src={require('../../../assets/paper.svg')} />
+            <div className="card">
+                <img src={require("../../../assets/paper.svg")} />
+                <p className="card-title">Paper</p>
+            </div>
 
-        <img src={require('../../../assets/scissors.svg')} />
+            <div className="card">
+                <img src={require("../../../assets/scissors.svg")} />
+                 <p className="card-title">Scissors</p>
+            </div>
 
-        <img src={require('../../../assets/lizard.svg')} />
+            <div className="card">
+                <img src={require("../../../assets/lizard.svg")} />
+                <p className="card-title">Lizard</p>
+            </div>
 
-        <img src={require('../../../assets/spock.svg')} />
-      </div>
-    );
+            <div className="card">
+                <img src={require("../../../assets/spock.svg")} />
+                <p className="card-title">Spock</p>
+            </div>
+        </div>;
   }
 
   onBetChange = (key, value) => {
@@ -105,7 +118,7 @@ class Game extends PureComponent {
           onChange={evt => this.onBetChange('bet', evt.target.value)}
           placeholder="Bet..."
         />
-        <button onClick={this.onPlayPress}>Play</button>
+        <button className="play" onClick={this.onPlayPress}>Play</button>
       </div>
     );
   }
