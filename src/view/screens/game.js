@@ -16,8 +16,7 @@ class Game extends PureComponent {
   render() {
     return (
       <div>
-        <h1>Here's the Game</h1>
-
+        <h1 />
         <button onClick={this.onPlayPress} />
       </div>
     );
