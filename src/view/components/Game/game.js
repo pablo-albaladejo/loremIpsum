@@ -32,7 +32,7 @@ class Game extends PureComponent {
   };
 
   onLogOut = () => {
-    //TODO log out :clown_face:
+    localStorage.removeItem('userData');
   };
 
   renderUserResult = () => {
@@ -67,14 +67,21 @@ class Game extends PureComponent {
   renderHeader() {
     const { balance, username } = this.state;
     if (!username) return null;
-    return <div className="header">
-      <div><span className="user">{username}</span>
-        <span className="balance">{balance}</span></div>
-            
-            <div className="logOut">
-                <img onClick={this.onLogOut} src={require("../../../assets/logout.svg")} />
-            </div>
-        </div>;
+    return (
+      <div className="header">
+        <div>
+          <span className="user">{username}</span>
+          <span className="balance">{balance}</span>
+        </div>
+
+        <div className="logOut">
+          <img
+            onClick={this.onLogOut}
+            src={require('../../../assets/logout.svg')}
+          />
+        </div>
+      </div>
+    );
   }
 
   renderCards() {
