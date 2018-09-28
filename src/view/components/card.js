@@ -1,24 +1,9 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 
-const { number } = PropTypes;
-
-class Card extends Component {
+class Card extends PureComponent {
   render() {
-    return (
-      <div>
-        <h1>Card</h1>
-      </div>
-    );
+    return <img src={require(`../../assets/${this.props.selected}.svg`)} />;
   }
 }
-
-Card.propTypes = {
-  balance: number
-};
-
-Card.defaultProps = {
-  balance: 0
-};
 
 export default Card;

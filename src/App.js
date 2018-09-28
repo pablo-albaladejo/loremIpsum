@@ -13,7 +13,7 @@ class App extends Component {
 
   getLoggedUser = () => {
     if (localStorage.getItem('userData')) {
-      this.setState(({isLoggedIn}) => ({ isLoggedIn: !isLoggedIn }));
+      this.setState(({ isLoggedIn }) => ({ isLoggedIn: !isLoggedIn }));
     }
   }
   render() {
@@ -23,10 +23,10 @@ class App extends Component {
         {isLoggedIn ? (
           <Game />
         ) : (
-          <div className="child-container">
-            <Login getLoggedUser={this.getLoggedUser} />
-          </div>
-        )}
+            <div className="child-container">
+              <Login getLoggedUser={this.getLoggedUser} />
+            </div>
+          )}
       </div>
     );
   }

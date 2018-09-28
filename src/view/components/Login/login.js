@@ -2,6 +2,8 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
+
+import { registerUser } from '../../../lib/api-service';
 class Login extends PureComponent {
   state = {
     username: '',
@@ -10,9 +12,15 @@ class Login extends PureComponent {
 
   signIn = () => {
     this.props.getLoggedUser();
-    // Call the api
-    // this.state.username
-    this.setState(show => ({ show: !show }));
+
+    registerUser({
+      name: this.state.username,
+    }).then(userData => {
+      localStorage.setItem('userData', JSON.stringify(userData));
+      this.setState(show => ({ show: !show }));
+    }).catch(err => {
+      console.log(err);
+    });
   };
 
   onChange = (key, value) => {
@@ -20,7 +28,7 @@ class Login extends PureComponent {
       {
         [key]: value,
       },
-      () => console.log(this.state.username)
+      //() => console.log(this.state.username)
     );
   };
 
@@ -28,14 +36,14 @@ class Login extends PureComponent {
     const { show } = this.state;
     if (!show) return null;
     return <div className="container">
-            <div className="container-child">
-        <img className="logo" src="../../../assets/7083c3658678335b0333e24bc3e-01.svg" />
-                <input onChange={evt => this.onChange("username", evt.target.value)} className="input" placeholder="User Name" />
-                <button className="login" onClick={this.signIn}>
-                    Login
+      <div className="container-child">
+        <img className="logo" src={require("../../../assets/7083c3658678335b0333e24bc3e-01.svg")} />
+        <input onChange={evt => this.onChange("username", evt.target.value)} className="input" placeholder="User Name" />
+        <button className="login" onClick={this.signIn}>
+          Login
                 </button>
-            </div>
-        </div>;
+      </div>
+    </div>;
   }
 
   render() {
