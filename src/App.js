@@ -6,18 +6,27 @@ import Game from '../src/view/components/Game/game';
 import Login from '../src/view/components/Login/login';
 
 class App extends Component {
+  state = {
+    isLoggedIn: false,
+    user: {},
+  };
 
-  state =  {
-    isLoggedIn: false
+  getLoggedUser() {
+    if (localStorage.getItem('userData')) {
+      this.state(isLoggedIn => ({ isLoggedIn: !isLoggedIn }));
+    }
   }
   render() {
-    const { isLoggedIn } = this.state
+    const { isLoggedIn } = this.state;
     return (
       <div className="App">
-        {isLoggedIn ? <Game /> : (
-        <div className="child-container">
-          <Login />
-        </div>)}
+        {isLoggedIn ? (
+          <Game />
+        ) : (
+          <div className="child-container">
+            <Login getLoggedUser={this.getLoggedUser} />
+          </div>
+        )}
       </div>
     );
   }

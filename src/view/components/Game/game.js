@@ -7,11 +7,13 @@ import './style.css';
 class Game extends PureComponent {
   state = {
     balance: 200,
-    username: 'Ismael'
+    username: 'Ismael',
+    selected: '',
+    bet: '',
   };
 
   onPlayPress = () => {
-    console.log(game(0, 50));
+    console.log('Start game');
   };
 
   onLogOut = () => {
@@ -20,10 +22,9 @@ class Game extends PureComponent {
 
   renderHeader() {
     const { balance, username } = this.state;
-
     if (!username) return null;
     return (
-      <div className="header">
+      <div className="card-header">
         <span>{username}</span>
         <span>{balance}</span>
         <div className="logOut">
@@ -36,13 +37,59 @@ class Game extends PureComponent {
     );
   }
 
-  renderGame() {}
+  renderCards() {
+    return (
+      <div className="card-container">
+        <div>
+          <img src={require('../../../assets/rock.svg')} />
+        </div>
+
+        <div>
+          <img src={require('../../../assets/paper.svg')} />
+        </div>
+
+        <div>
+          <img src={require('../../../assets/scissors.svg')} />
+        </div>
+
+        <div>
+          <img src={require('../../../assets/lizard.svg')} />
+        </div>
+
+        <div>
+          <img src={require('../../../assets/spock.svg')} />
+        </div>
+      </div>
+    );
+  }
+
+  onBetChange = (key, value) => {
+    this.setState(
+      {
+        [key]: value,
+      },
+      () => console.log(this.state)
+    );
+  };
+
+  renderBottom() {
+    return (
+      <div>
+        <input
+          onChange={evt => this.onBetChange('bet', evt.target.value)}
+          placeHolder="Bet..."
+        />
+        <button onClick={this.onPlayPress()}>Play</button>
+      </div>
+    );
+  }
 
   render() {
     return (
       <div>
-        <h1 />
-        <button onClick={this.onPlayPress} />
+        {this.renderHeader()}
+        {this.renderCards()}
+        {this.renderBottom()}
       </div>
     );
   }
