@@ -9,7 +9,7 @@ class Game extends PureComponent {
     balance: 200,
     username: 'Ismael',
     selected: '',
-    bet: ''
+    bet: '',
   };
 
   onPlayPress = () => {
@@ -24,7 +24,7 @@ class Game extends PureComponent {
     const { balance, username } = this.state;
     if (!username) return null;
     return (
-      <div className="header">
+      <div className="card-header">
         <span>{username}</span>
         <span>{balance}</span>
         <div className="logOut">
@@ -39,7 +39,7 @@ class Game extends PureComponent {
 
   renderCards() {
     return (
-      <div className="container">
+      <div className="card-container">
         <div>
           <img src={require('../../../assets/rock.svg')} />
         </div>
@@ -66,7 +66,7 @@ class Game extends PureComponent {
   onBetChange = (key, value) => {
     this.setState(
       {
-        [key]: value
+        [key]: value,
       },
       () => console.log(this.state)
     );

@@ -5,10 +5,11 @@ import './style.css';
 class Login extends PureComponent {
   state = {
     username: '',
-    show: true
+    show: true,
   };
 
   signIn = () => {
+    this.props.getLoggedUser();
     // Call the api
     // this.state.username
     this.setState(show => ({ show: !show }));
@@ -17,7 +18,7 @@ class Login extends PureComponent {
   onChange = (key, value) => {
     this.setState(
       {
-        [key]: value
+        [key]: value,
       },
       () => console.log(this.state.username)
     );
