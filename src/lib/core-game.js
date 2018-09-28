@@ -75,20 +75,18 @@ function updateBalance(balance, bet, gamble) {
 
 }
 
-function game(playerOne, bet) {
+function game(playerOne, bet, intialBalance) {
   const playerTwo = getComputerOption(Object.keys(CONSTANTS.CARDS).length);
-
-  const balance = 100;
-
   const gamble = play(playerOne, playerTwo);
-
+  console.log(gamble);
   return {
     result: {
       status: CONSTANTS.STATUS.SUCCESS,
       gamble,
+      playerOne,
       playerTwo,
     },
-    balance: updateBalance(balance, bet, gamble)
+    balance: updateBalance(intialBalance, bet, gamble)
   };
 }
 
