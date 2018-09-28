@@ -27,3 +27,13 @@
   height: 40px;
   background-image: linear-gradient(256deg, #498ac3, #8a99f9);
 }
+
+.game-container {
+  display: flex;
+  align-content: 'center';
+  align-items: 'center';
+  width: 340px;
+  height: 300px;
+  background-color: #f5f6f9;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.2);
+}

@@ -40,25 +40,15 @@ class Game extends PureComponent {
   renderCards() {
     return (
       <div className="card-container">
-        <div>
-          <img src={require('../../../assets/rock.svg')} />
-        </div>
+        <img src={require('../../../assets/rock.svg')} />
 
-        <div>
-          <img src={require('../../../assets/paper.svg')} />
-        </div>
+        <img src={require('../../../assets/paper.svg')} />
 
-        <div>
-          <img src={require('../../../assets/scissors.svg')} />
-        </div>
+        <img src={require('../../../assets/scissors.svg')} />
 
-        <div>
-          <img src={require('../../../assets/lizard.svg')} />
-        </div>
+        <img src={require('../../../assets/lizard.svg')} />
 
-        <div>
-          <img src={require('../../../assets/spock.svg')} />
-        </div>
+        <img src={require('../../../assets/spock.svg')} />
       </div>
     );
   }
@@ -77,7 +67,7 @@ class Game extends PureComponent {
       <div>
         <input
           onChange={evt => this.onBetChange('bet', evt.target.value)}
-          placeHolder="Bet..."
+          placeholder="Bet..."
         />
         <button onClick={this.onPlayPress()}>Play</button>
       </div>
@@ -86,7 +76,7 @@ class Game extends PureComponent {
 
   render() {
     return (
-      <div>
+      <div className="game-container">
         {this.renderHeader()}
         {this.renderCards()}
         {this.renderBottom()}
