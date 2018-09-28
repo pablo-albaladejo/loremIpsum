@@ -63,7 +63,7 @@ class Game extends PureComponent {
     );
   }
 
-  onBetChange = () => {
+  onBetChange = (key, value) => {
     this.setState(
       {
         [key]: value
