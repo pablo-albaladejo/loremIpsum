@@ -9,3 +9,21 @@
   height: 28px;
   background-color: #ffffff;
 }
+
+.container {
+  display: flex;
+  align-content: 'center';
+  align-items: 'center';
+}
+
+.bet {
+  width: 297px;
+  height: 40px;
+  background-color: #ffffff;
+}
+
+.play {
+  width: 97px;
+  height: 40px;
+  background-image: linear-gradient(256deg, #498ac3, #8a99f9);
+}
