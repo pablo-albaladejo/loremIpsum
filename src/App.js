@@ -6,13 +6,18 @@ import Game from '../src/view/components/Game/game';
 import Login from '../src/view/components/Login/login';
 
 class App extends Component {
+
+  state =  {
+    isLoggedIn: false
+  }
   render() {
+    const { isLoggedIn } = this.state
     return (
       <div className="App">
-        <Game />
+        {isLoggedIn ? <Game /> : (
         <div className="child-container">
           <Login />
-        </div>
+        </div>)}
       </div>
     );
   }
