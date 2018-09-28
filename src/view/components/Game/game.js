@@ -8,9 +8,7 @@ import './style.css';
 
 class Game extends PureComponent {
   state = {
-    balance: 200,
-    username: 'Ismael',
-    userSelected: '',
+    userSelected: 0,
     computerSelected: '',
     username:
       localStorage.getItem('userData') &&
@@ -18,16 +16,23 @@ class Game extends PureComponent {
     balance:
       localStorage.getItem('userData') &&
       JSON.parse(localStorage.getItem('userData')).coin,
-    bet: '',
-    result: '',
+    bet: 10,
+    result: {},
     isLoggedIn: true,
   };
 
   onPlayPress = () => {
-    game(this.state.username, CONSTANTS.CARDS.ROCK, 100, this.state.balance)
+    game(
+      this.state.username,
+      this.state.userSelected,
+      this.state.bet,
+      this.state.balance
+    )
       .then(result => {
         this.setState({
           balance: result.balance,
+          userSelected: result.playerOne,
+          computerSelected: result.playerTwo,
         });
 
         console.log(result);
@@ -53,11 +58,27 @@ class Game extends PureComponent {
     return <Card selected={computerSelected} />;
   };
 
+  resetState = () => {
+    this.setState({ result: '' });
+  };
+
   renderTextResult = () => {
     const { result } = this.state;
     return (
-      <div>
-        <h1>{result}</h1>
+      <div className="game-result">
+        <div className="card">
+          {this.renderComputerResult()}
+          <p className="card-title">Computer</p>
+        </div>
+        <h1 className="win">You win the round</h1>
+        {/* <h1 className="lose">It's a Tie!</h1> */}
+        <div className="card">
+          {this.renderUserResult()}
+          <p className="card-title">You</p>
+        </div>
+        <button className="play-again" onClick={this.resetState()}>
+          Play again
+        </button>
       </div>
     );
   };
@@ -95,27 +116,46 @@ class Game extends PureComponent {
   renderCards() {
     return (
       <div className="card-container">
-        <div className="card">
+        <div
+          className="card"
+          onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.ROCK })}
+        >
           <img src={require('../../../assets/rock.svg')} />
           <p className="card-title">Rock</p>
         </div>
 
-        <div className="card">
+        <div
+          className="card"
+          onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.PAPER })}
+        >
           <img src={require('../../../assets/paper.svg')} />
           <p className="card-title">Paper</p>
         </div>
 
-        <div className="card">
+        <div
+          className="card"
+          onClick={() =>
+            this.setState({ userSelected: CONSTANTS.CARDS.SCISSORS })
+          }
+        >
           <img src={require('../../../assets/scissors.svg')} />
           <p className="card-title">Scissors</p>
         </div>
 
-        <div className="card">
+        <div
+          className="card"
+          onClick={() =>
+            this.setState({ userSelected: CONSTANTS.CARDS.LIZARD })
+          }
+        >
           <img src={require('../../../assets/lizard.svg')} />
           <p className="card-title">Lizard</p>
         </div>
 
-        <div className="card">
+        <div
+          className="card"
+          onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.SPOCK })}
+        >
           <img src={require('../../../assets/spock.svg')} />
           <p className="card-title">Spock</p>
         </div>
@@ -126,7 +166,7 @@ class Game extends PureComponent {
   onBetChange = (key, value) => {
     this.setState(
       {
-        [key]: value,
+        [key]: parseInt(value),
       },
       () => console.log(this.state)
     );
@@ -136,6 +176,7 @@ class Game extends PureComponent {
     return (
       <div className="container-play">
         <input
+          defaultValue={this.state.bet}
           onChange={evt => this.onBetChange('bet', evt.target.value)}
           placeholder="Bet..."
         />
@@ -153,7 +194,9 @@ class Game extends PureComponent {
         {isLoggedIn ? (
           <div className="game-container">
             {this.renderHeader()}
-            {this.result ? this.renderResult() : this.renderCards()}
+            {Object.keys(this.state.result).length > 0
+              ? this.renderResult()
+              : this.renderCards()}
             {this.renderBottom()}
           </div>
         ) : null}

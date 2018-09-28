@@ -56,17 +56,16 @@ img {
   align-items: center;
   justify-content: space-between;
   flex-direction: column;
-  
 }
 
 .card-container {
-display: flex;
-flex-wrap: wrap;
-justify-content: space-around;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
 }
 
 .card-title {
-  font-family: VarelaRound, sans-serif;
+  font-family: 'Varela Round', sans-serif;
   font-size: 14px;
   color: #6e7f8d;
   text-transform: uppercase;
@@ -88,7 +87,7 @@ input {
   color: #fff;
   border: none;
   text-transform: uppercase;
-  font-family: VarelaRound, sans-serif;
+  font-family: 'Varela Round', sans-serif;
   font-weight: 200;
   letter-spacing: 2px;
   cursor: pointer;
@@ -96,4 +95,64 @@ input {
 
 .container-play {
   margin-top: 20px;
+}
+
+.game-result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  height: 90%;
+}
+
+.game-result .card {
+  width: 160px;
+  height: 160px;
+}
+
+.win {
+  background-image: linear-gradient(278deg, #62d2cb, #03a49b);
+  font-family: 'Varela Round', sans-serif;
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(278deg, #62d2cb, #03a49b);
+}
+
+.lose {
+  width: 100px;
+  height: 29px;
+  background-image: linear-gradient(254deg, #dd8080, #ba1f2d);
+  font-family: 'Varela Round', sans-serif;
+  font-size: 24px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(254deg, #dd8080, #ba1f2d);
+}
+
+.play-again {
+  margin-top: 20px;
+  width: 260px;
+  height: 40px;
+  border-radius: 20px;
+  background-image: linear-gradient(265deg, #498ac3, #8a99f9);
+  color: #fff;
 }

@@ -44,7 +44,6 @@ class Main extends PureComponent {
 
   renderLogin() {
     const { isLoggedIn } = this.state;
-    console.log(isLoggedIn, 'isLoggedIn');
     if (isLoggedIn) return <Game changeLogStatus={this.changeLogStatus} />;
     return (
       <div className="container">
