@@ -2,48 +2,63 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import './style.css';
 
-
 import { registerUser } from '../../../lib/api-service';
-class Login extends PureComponent {
+import Game from '../Game/game';
+class Main extends PureComponent {
   state = {
     username: '',
-    show: true,
+    isLoggedIn: false,
   };
 
-  signIn = () => {
-    this.props.getLoggedUser();
+  componentDidMount() {
+    if (localStorage.getItem('userData')) {
+      this.setState(({ isLoggedIn }) => ({ isLoggedIn: !isLoggedIn }));
+    }
+  }
 
+  signIn = () => {
     registerUser({
       name: this.state.username,
-    }).then(userData => {
-      localStorage.setItem('userData', JSON.stringify(userData));
-      this.setState(show => ({ show: !show }));
-    }).catch(err => {
-      console.log(err);
-    });
+    })
+      .then(userData => {
+        localStorage.setItem('userData', JSON.stringify(userData));
+        this.setState(show => ({ show: !show }));
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 
   onChange = (key, value) => {
     this.setState(
       {
         [key]: value,
-      },
+      }
       //() => console.log(this.state.username)
     );
   };
 
   renderLogin() {
-    const { show } = this.state;
-    if (!show) return null;
-    return <div className="container">
-      <div className="container-child">
-        <img className="logo" src={require("../../../assets/7083c3658678335b0333e24bc3e-01.svg")} />
-        <input onChange={evt => this.onChange("username", evt.target.value)} className="input" placeholder="User Name" />
-        <button className="login" onClick={this.signIn}>
-          Login
-                </button>
+    const { isLoggedIn } = this.state;
+    console.log(isLoggedIn, 'isLoggedIn');
+    if (isLoggedIn) return <Game />;
+    return (
+      <div className="container">
+        <div className="container-child">
+          <img
+            src={require('../../../assets/7083c3658678335b0333e24bc3e-01.svg')}
+          />
+          <input
+            onChange={evt => this.onChange('username', evt.target.value)}
+            className="input"
+            placeholder="User Name"
+          />
+          <button className="login" onClick={this.signIn}>
+            Main
+          </button>
+        </div>
       </div>
-    </div>;
+    );
   }
 
   render() {
@@ -51,8 +66,8 @@ class Login extends PureComponent {
   }
 }
 
-Login.propTypes = {};
+Main.propTypes = {};
 
-Login.defaultProps = {};
+Main.defaultProps = {};
 
-export default Login;
+export default Main;

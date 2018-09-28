@@ -52,42 +52,54 @@ function getComputerOption(max) {
   return Math.floor(Math.random() * (max + 1));
 }
 
-function getCurrentBalance(bet, balance) {
-  return balance - bet;
-}
-
-function canUserPlay(bet, balance) {
-  return bet < balance;
-}
-
-function updateBalance(balance, bet, gamble) {
-
+function getChange(bet, gamble) {
   switch (gamble) {
     case CONSTANTS.GAMBLE.LOSE:
-      return balance - bet;
-    
-    case CONSTANTS.GAMBLE.WIN:
-      return balance + bet;
-    
-    default:
-      return balance
-  }
+      return -bet;
 
+    case CONSTANTS.GAMBLE.WIN:
+      return +bet;
+
+    default:
+      return 0
+  }
 }
 
-function game(playerOne, bet, intialBalance) {
-  const playerTwo = getComputerOption(Object.keys(CONSTANTS.CARDS).length);
-  const gamble = play(playerOne, playerTwo);
-  console.log(gamble);
-  return {
-    result: {
-      status: CONSTANTS.STATUS.SUCCESS,
+function game(username, playerOne, bet, balance) {
+  return new Promise((resolve, reject) => {
+    const playerTwo = getComputerOption(Object.keys(CONSTANTS.CARDS).length - 1);
+    const gamble = play(playerOne, playerTwo);
+
+    const req = {
+      gameId: 'rock_scissors_paper',
+      userName: username,
+      bet: bet,
+      change: getChange(bet, gamble)
+    };
+
+    let res = {
       gamble,
       playerOne,
       playerTwo,
-    },
-    balance: updateBalance(intialBalance, bet, gamble)
-  };
+      balance,
+    }
+
+    if (gamble !== 2) { // balance changed!!
+      submitPlay(req)
+        .then(result => {
+          res.balance = result.coin;
+          resolve(res)
+        })
+        .catch(err => {
+          console.log(err);
+          reject(err)
+        })
+    } else {
+      resolve(res)
+    }
+
+
+  });
 }
 
 export default game;

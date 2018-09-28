@@ -14,5 +14,12 @@ export default {
     LOSE: 0,
     WIN: 1,
     TIE: 2,
-  }
+  },
+  FILENAMES: {
+    0: 'scissors',
+    1: 'paper',
+    2: 'rock',
+    3: 'lizard',
+    4: 'spock',
+  },
 };
