@@ -11,9 +11,9 @@ class App extends Component {
     user: {},
   };
 
-  getLoggedUser() {
+  getLoggedUser = () => {
     if (localStorage.getItem('userData')) {
-      this.state(isLoggedIn => ({ isLoggedIn: !isLoggedIn }));
+      this.setState(({isLoggedIn}) => ({ isLoggedIn: !isLoggedIn }));
     }
   }
   render() {
