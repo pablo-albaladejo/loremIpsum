@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import game from '../../lib/core-game';
+import game from '../../../lib/core-game';
 
 import './style.css';
 
@@ -29,7 +29,7 @@ class Game extends PureComponent {
         <span>{balance}</span>
         <div className="logOut">
           <img
-            onClick={onLogOut}
+            onClick={this.onLogOut}
             src={require('../../../assets/logout-2.svg')}
           />
         </div>
