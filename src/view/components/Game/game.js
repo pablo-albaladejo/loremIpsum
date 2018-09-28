@@ -1,19 +1,26 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import game from '../../../lib/core-game';
-
+import CONSTANTS from '../../../lib/constants';
 import './style.css';
 
 class Game extends PureComponent {
+
   state = {
-    balance: 200,
-    username: 'Ismael',
+    username: JSON.parse(localStorage.getItem('userData')).name,
+    balance: JSON.parse(localStorage.getItem('userData')).coin,
     selected: '',
     bet: '',
   };
 
   onPlayPress = () => {
-    console.log('Start game');
+    const result = game(CONSTANTS.CARDS.ROCK, 100, this.state.balance);
+    
+    this.setState({
+      balance: result.balance,
+    })
+    console.log(result);
+    
   };
 
   onLogOut = () => {
@@ -69,7 +76,7 @@ class Game extends PureComponent {
           onChange={evt => this.onBetChange('bet', evt.target.value)}
           placeholder="Bet..."
         />
-        <button onClick={this.onPlayPress()}>Play</button>
+        <button onClick={this.onPlayPress}>Play</button>
       </div>
     );
   }
