@@ -17,7 +17,11 @@ const registerUser = user => {
     body,
     json: true,
   };
-  return request(options);
+  //return request(options);
+  return new Promise(resolve => resolve({
+    name: 'name',
+    coin: 1000,
+  }));
 };
 
 const submitPlay = play => {
