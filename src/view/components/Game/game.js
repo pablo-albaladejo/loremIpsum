@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import game from '../../../lib/core-game';
 import Card from '../../components/card';
 
@@ -64,7 +63,6 @@ class Game extends PureComponent {
   };
 
   renderResult = () => {
-    const { result } = this.state;
     return (
       <div className="game-result">
         <div className="card">
@@ -109,6 +107,7 @@ class Game extends PureComponent {
           <img
             onClick={this.onLogOut}
             src={require('../../../assets/logout.svg')}
+            alt={'logout'}
           />
         </div>
       </div>
@@ -122,7 +121,7 @@ class Game extends PureComponent {
           className="card"
           onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.ROCK })}
         >
-          <img src={require('../../../assets/rock.svg')} />
+          <img src={require('../../../assets/rock.svg')} alt={'rock'}/>
           <p className="card-title">Rock</p>
         </div>
 
@@ -130,7 +129,7 @@ class Game extends PureComponent {
           className="card"
           onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.PAPER })}
         >
-          <img src={require('../../../assets/paper.svg')} />
+          <img src={require('../../../assets/paper.svg')} alt={'paper'}/>
           <p className="card-title">Paper</p>
         </div>
 
@@ -140,7 +139,7 @@ class Game extends PureComponent {
             this.setState({ userSelected: CONSTANTS.CARDS.SCISSORS })
           }
         >
-          <img src={require('../../../assets/scissors.svg')} />
+          <img src={require('../../../assets/scissors.svg')} alt={'scissors'}/>
           <p className="card-title">Scissors</p>
         </div>
 
@@ -150,7 +149,7 @@ class Game extends PureComponent {
             this.setState({ userSelected: CONSTANTS.CARDS.LIZARD })
           }
         >
-          <img src={require('../../../assets/lizard.svg')} />
+          <img src={require('../../../assets/lizard.svg')} alt={'lizard'}/>
           <p className="card-title">Lizard</p>
         </div>
 
@@ -158,7 +157,7 @@ class Game extends PureComponent {
           className="card"
           onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.SPOCK })}
         >
-          <img src={require('../../../assets/spock.svg')} />
+          <img src={require('../../../assets/spock.svg')} alt={'spock'}/>
           <p className="card-title">Spock</p>
         </div>
       </div>
@@ -168,7 +167,7 @@ class Game extends PureComponent {
   onBetChange = (key, value) => {
     this.setState(
       {
-        [key]: parseInt(value),
+        [key]: parseInt(value,10),
       },
       () => console.log(this.state)
     );

@@ -1,5 +1,4 @@
 import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
 import './style.css';
 
 import { registerUser } from '../../../lib/api-service';
@@ -49,6 +48,7 @@ class Main extends PureComponent {
       <div className="container">
         <div className="container-child">
           <img
+            alt={'logo'}
             className="logo"
             src={require('../../../assets/7083c3658678335b0333e24bc3e-01.svg')}
           />
