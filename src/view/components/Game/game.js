@@ -75,7 +75,7 @@ class Game extends PureComponent {
           {this.renderUserResult()}
           <p className="card-title">You</p>
         </div>
-        <button className="play-again" onClick={this.resetState()}>
+        <button className="play-again" onClick={() => this.resetState()}>
           Play again
         </button>
       </div>
