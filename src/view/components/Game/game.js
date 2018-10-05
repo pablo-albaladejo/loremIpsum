@@ -34,8 +34,6 @@ class Game extends PureComponent {
           computerSelected: result.playerTwo,
           result: result,
         });
-
-        console.log(result);
       })
       .catch(err => {
         console.log(err);
@@ -62,6 +60,17 @@ class Game extends PureComponent {
     this.setState({ result: '' });
   };
 
+  renderResultMessage = () => {
+    switch (this.state.result.gamble) {
+      case CONSTANTS.GAMBLE.WIN:
+        return (<h1 className="win">You win the round</h1>);
+      case CONSTANTS.GAMBLE.LOSE:
+        return (<h1 className="lose">You lose the round</h1>);
+      default:
+        return (<h1 className="tie">It's a Tie!</h1>)
+    }
+  }
+
   renderResult = () => {
     return (
       <div className="game-result">
@@ -69,8 +78,7 @@ class Game extends PureComponent {
           {this.renderComputerResult()}
           <p className="card-title">Computer</p>
         </div>
-        <h1 className="win">You win the round</h1>
-        {/* <h1 className="lose">It's a Tie!</h1> */}
+        {this.renderResultMessage()}
         <div className="card">
           {this.renderUserResult()}
           <p className="card-title">You</p>
@@ -107,24 +115,9 @@ class Game extends PureComponent {
     return (
       <div>
         <div className="card-container">
-          <div
-            className="card"
-            onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.ROCK })}
-          >
-            <img src={require('../../../assets/rock.svg')} alt={'rock'} />
-            <p className="card-title">Rock</p>
-          </div>
 
           <div
-            className="card"
-            onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.PAPER })}
-          >
-            <img src={require('../../../assets/paper.svg')} alt={'paper'} />
-            <p className="card-title">Paper</p>
-          </div>
-
-          <div
-            className="card"
+            className={"card" + (this.state.userSelected === CONSTANTS.CARDS.SCISSORS ? " active" : "")}
             onClick={() =>
               this.setState({ userSelected: CONSTANTS.CARDS.SCISSORS })
             }
@@ -134,17 +127,31 @@ class Game extends PureComponent {
           </div>
 
           <div
-            className="card"
-            onClick={() =>
-              this.setState({ userSelected: CONSTANTS.CARDS.LIZARD })
-            }
+            className={"card" + (this.state.userSelected === CONSTANTS.CARDS.PAPER ? " active" : "")}
+            onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.PAPER })}
+          >
+            <img src={require('../../../assets/paper.svg')} alt={'paper'} />
+            <p className="card-title">Paper</p>
+          </div>
+
+          <div
+            className={"card" + (this.state.userSelected === CONSTANTS.CARDS.ROCK ? " active" : "")}
+            onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.ROCK })}
+          >
+            <img src={require('../../../assets/rock.svg')} alt={'rock'} />
+            <p className="card-title">Rock</p>
+          </div>
+
+          <div
+            className={"card" + (this.state.userSelected === CONSTANTS.CARDS.LIZARD ? " active" : "")}
+            onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.LIZARD })}
           >
             <img src={require('../../../assets/lizard.svg')} alt={'lizard'} />
             <p className="card-title">Lizard</p>
           </div>
 
           <div
-            className="card"
+            className={"card" + (this.state.userSelected === CONSTANTS.CARDS.SPOCK ? " active" : "")}
             onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.SPOCK })}
           >
             <img src={require('../../../assets/spock.svg')} alt={'spock'} />
@@ -182,7 +189,6 @@ class Game extends PureComponent {
 
   render() {
     const { isLoggedIn } = this.state;
-    console.log(this.state.result, '*************');
     return (
       <div>
         {isLoggedIn ? (
