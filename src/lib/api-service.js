@@ -25,20 +25,23 @@ const registerUser = user => {
 };
 
 const submitPlay = play => {
-  const uriEndpoint = `${BASE_URL}/nav/log`;
-  const body = play;
-  const options = {
-    headers: {
-      accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-    uri: uriEndpoint,
-    body,
-    json: true,
-  };
-
-  return request(options);
+  /*   const uriEndpoint = `${BASE_URL}/nav/log`;
+    const body = play;
+    const options = {
+      headers: {
+        accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      method: 'POST',
+      uri: uriEndpoint,
+      body,
+      json: true,
+    };
+  
+    return request(options); */
+  return new Promise((resolve) => resolve({
+    change: play.change,
+  }));
 };
 
 const plays = () => {

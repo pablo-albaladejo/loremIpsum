@@ -87,7 +87,7 @@ function game(username, playerOne, bet, balance) {
     if (gamble !== 2) { // balance changed!!
       submitPlay(req)
         .then(result => {
-          res.balance = result.coin;
+          res.balance += result.change;
           resolve(res)
         })
         .catch(err => {
