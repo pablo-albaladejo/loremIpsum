@@ -82,17 +82,6 @@ class Game extends PureComponent {
     );
   };
 
-  /*   renderResult = () => {
-    console.log('yooooo');
-    return (
-      <div>
-        {this.renderUserResult()}
-        {this.renderTextResult()}
-        {this.renderComputerResult()}
-      </div>
-    );
-  }; */
-
   renderHeader() {
     const { balance, username } = this.state;
     if (!username) return null;
