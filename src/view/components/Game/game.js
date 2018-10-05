@@ -105,50 +105,53 @@ class Game extends PureComponent {
 
   renderCards() {
     return (
-      <div className="card-container">
-        <div
-          className="card"
-          onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.ROCK })}
-        >
-          <img src={require('../../../assets/rock.svg')} alt={'rock'}/>
-          <p className="card-title">Rock</p>
-        </div>
+      <div>
+        <div className="card-container">
+          <div
+            className="card"
+            onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.ROCK })}
+          >
+            <img src={require('../../../assets/rock.svg')} alt={'rock'} />
+            <p className="card-title">Rock</p>
+          </div>
 
-        <div
-          className="card"
-          onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.PAPER })}
-        >
-          <img src={require('../../../assets/paper.svg')} alt={'paper'}/>
-          <p className="card-title">Paper</p>
-        </div>
+          <div
+            className="card"
+            onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.PAPER })}
+          >
+            <img src={require('../../../assets/paper.svg')} alt={'paper'} />
+            <p className="card-title">Paper</p>
+          </div>
 
-        <div
-          className="card"
-          onClick={() =>
-            this.setState({ userSelected: CONSTANTS.CARDS.SCISSORS })
-          }
-        >
-          <img src={require('../../../assets/scissors.svg')} alt={'scissors'}/>
-          <p className="card-title">Scissors</p>
-        </div>
+          <div
+            className="card"
+            onClick={() =>
+              this.setState({ userSelected: CONSTANTS.CARDS.SCISSORS })
+            }
+          >
+            <img src={require('../../../assets/scissors.svg')} alt={'scissors'} />
+            <p className="card-title">Scissors</p>
+          </div>
 
-        <div
-          className="card"
-          onClick={() =>
-            this.setState({ userSelected: CONSTANTS.CARDS.LIZARD })
-          }
-        >
-          <img src={require('../../../assets/lizard.svg')} alt={'lizard'}/>
-          <p className="card-title">Lizard</p>
-        </div>
+          <div
+            className="card"
+            onClick={() =>
+              this.setState({ userSelected: CONSTANTS.CARDS.LIZARD })
+            }
+          >
+            <img src={require('../../../assets/lizard.svg')} alt={'lizard'} />
+            <p className="card-title">Lizard</p>
+          </div>
 
-        <div
-          className="card"
-          onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.SPOCK })}
-        >
-          <img src={require('../../../assets/spock.svg')} alt={'spock'}/>
-          <p className="card-title">Spock</p>
+          <div
+            className="card"
+            onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.SPOCK })}
+          >
+            <img src={require('../../../assets/spock.svg')} alt={'spock'} />
+            <p className="card-title">Spock</p>
+          </div>
         </div>
+        {this.renderPlayFooter()}
       </div>
     );
   }
@@ -156,13 +159,13 @@ class Game extends PureComponent {
   onBetChange = (key, value) => {
     this.setState(
       {
-        [key]: parseInt(value,10),
+        [key]: parseInt(value, 10),
       },
       () => console.log(this.state)
     );
   };
 
-  renderBottom() {
+  renderPlayFooter() {
     return (
       <div className="container-play">
         <input
@@ -188,7 +191,6 @@ class Game extends PureComponent {
             {Object.keys(this.state.result).length > 0
               ? this.renderResult()
               : this.renderCards()}
-            {this.renderBottom()}
           </div>
         ) : null}
       </div>
