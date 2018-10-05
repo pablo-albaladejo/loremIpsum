@@ -112,52 +112,25 @@ class Game extends PureComponent {
   }
 
   renderCards() {
+    console.log(this.state.userSelected);
+
+    console.log(CONSTANTS.CARDS)
+
     return (
       <div>
+
         <div className="card-container">
-
-          <div
-            className={"card" + (this.state.userSelected === CONSTANTS.CARDS.SCISSORS ? " active" : "")}
-            onClick={() =>
-              this.setState({ userSelected: CONSTANTS.CARDS.SCISSORS })
-            }
-          >
-            <img src={require('../../../assets/scissors.svg')} alt={'scissors'} />
-            <p className="card-title">Scissors</p>
-          </div>
-
-          <div
-            className={"card" + (this.state.userSelected === CONSTANTS.CARDS.PAPER ? " active" : "")}
-            onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.PAPER })}
-          >
-            <img src={require('../../../assets/paper.svg')} alt={'paper'} />
-            <p className="card-title">Paper</p>
-          </div>
-
-          <div
-            className={"card" + (this.state.userSelected === CONSTANTS.CARDS.ROCK ? " active" : "")}
-            onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.ROCK })}
-          >
-            <img src={require('../../../assets/rock.svg')} alt={'rock'} />
-            <p className="card-title">Rock</p>
-          </div>
-
-          <div
-            className={"card" + (this.state.userSelected === CONSTANTS.CARDS.LIZARD ? " active" : "")}
-            onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.LIZARD })}
-          >
-            <img src={require('../../../assets/lizard.svg')} alt={'lizard'} />
-            <p className="card-title">Lizard</p>
-          </div>
-
-          <div
-            className={"card" + (this.state.userSelected === CONSTANTS.CARDS.SPOCK ? " active" : "")}
-            onClick={() => this.setState({ userSelected: CONSTANTS.CARDS.SPOCK })}
-          >
-            <img src={require('../../../assets/spock.svg')} alt={'spock'} />
-            <p className="card-title">Spock</p>
-          </div>
+          {Object.keys(CONSTANTS.CARDS).map(card =>
+            <div
+              className={"card" + (this.state.userSelected === CONSTANTS.CARDS[card] ? " active" : "")}
+              onClick={() => this.setState({ userSelected: CONSTANTS.CARDS[card] })}
+            >
+              <img src={require('../../../assets/' + card.toLowerCase() + '.svg')} alt={card.toLowerCase()} />
+              <p className="card-title">{card}</p>
+            </div>
+          )}
         </div>
+        
         {this.renderPlayFooter()}
       </div>
     );
