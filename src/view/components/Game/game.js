@@ -83,7 +83,7 @@ class Game extends PureComponent {
           {this.renderUserResult()}
           <p className="card-title">You</p>
         </div>
-        <button className="play-again" onClick={() => this.resetState()}>
+        <button className="play-again" onClick={() => this.setState({ result: {} })}>
           Play again
         </button>
       </div>
@@ -111,26 +111,39 @@ class Game extends PureComponent {
     );
   }
 
-  renderCards() {
-    console.log(this.state.userSelected);
 
-    console.log(CONSTANTS.CARDS)
+  renderCard = (card) => {
+    console.log('card', card);
+    console.log('card item', CONSTANTS.CARDS[card]);
+    console.log('active', this.state.userSelected === CONSTANTS.CARDS[card]);
+    console.log("-----");
+
+    return (
+      <div
+        key={"card-" + card}
+        className={"card" + (this.state.userSelected === CONSTANTS.CARDS[card] ? " active" : "")}
+        onClick={() => this.setState({ userSelected: CONSTANTS.CARDS[card] })}
+      >
+        <img src={require('../../../assets/' + card.toLowerCase() + '.svg')} alt={card.toLowerCase()} />
+        <p className="card-title">{card}</p>
+      </div>
+    )
+  }
+
+  renderCards = () => {
+    console.log("*******");
+    console.log('cards', CONSTANTS.CARDS);
+    console.log('keys', Object.keys(CONSTANTS.CARDS));
+    console.log('userSelected', this.state.userSelected);
+    console.log('\n')
 
     return (
       <div>
 
         <div className="card-container">
-          {Object.keys(CONSTANTS.CARDS).map(card =>
-            <div
-              className={"card" + (this.state.userSelected === CONSTANTS.CARDS[card] ? " active" : "")}
-              onClick={() => this.setState({ userSelected: CONSTANTS.CARDS[card] })}
-            >
-              <img src={require('../../../assets/' + card.toLowerCase() + '.svg')} alt={card.toLowerCase()} />
-              <p className="card-title">{card}</p>
-            </div>
-          )}
+          {Object.keys(CONSTANTS.CARDS).map(card => this.renderCard(card))}
         </div>
-        
+
         {this.renderPlayFooter()}
       </div>
     );
@@ -145,7 +158,7 @@ class Game extends PureComponent {
     );
   };
 
-  renderPlayFooter() {
+  renderPlayFooter = () => {
     return (
       <div className="container-play">
         <input
@@ -153,7 +166,7 @@ class Game extends PureComponent {
           onChange={evt => this.onBetChange('bet', evt.target.value)}
           placeholder="Bet..."
         />
-        <button className="play" onClick={this.onPlayPress}>
+        <button className="play" onClick={() => this.onPlayPress()}>
           Play
         </button>
       </div>
